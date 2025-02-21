@@ -1,7 +1,5 @@
 package com.prisc.summer_screen;
 
-import com.prisc.summer_screen.model.SeriesInfo;
-import com.prisc.summer_screen.service.DataConverter;
 import com.prisc.summer_screen.service.OmdbApiConsumer;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,9 +19,9 @@ public class SummerScreenApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		var apiConsumer = new OmdbApiConsumer();
-		var json = apiConsumer.getData("The Office");
-		DataConverter mapper = new DataConverter();
-		SeriesInfo serie = mapper.jsonToObject(json, SeriesInfo.class);
-		System.out.println(serie);
+
+		var x = apiConsumer.getAllEpisodesInfo("Gilmore Girls");
+		x.forEach(System.out::println);
+
 	}
 }
