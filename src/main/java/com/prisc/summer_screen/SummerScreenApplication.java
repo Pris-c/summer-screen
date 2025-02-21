@@ -1,13 +1,26 @@
 package com.prisc.summer_screen;
 
+import com.prisc.summer_screen.service.ApiConsumer;
+import com.prisc.summer_screen.service.OmdbApiConsumer;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * CommandLineRunner interface define actions to be executed as soon the application is started
+ */
+
 @SpringBootApplication
-public class SummerScreenApplication {
+public class SummerScreenApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SummerScreenApplication.class, args);
 	}
 
+	@Override
+	public void run(String... args) throws Exception {
+		var apiConsumer = new OmdbApiConsumer();
+		var json = apiConsumer.getData("Happy Potter");
+		System.out.println(json);
+	}
 }
