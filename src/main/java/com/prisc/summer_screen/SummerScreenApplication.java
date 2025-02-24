@@ -1,6 +1,6 @@
 package com.prisc.summer_screen;
 
-import com.prisc.summer_screen.service.OmdbApiConsumer;
+import com.prisc.summer_screen.view.View;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,10 +18,9 @@ public class SummerScreenApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var apiConsumer = new OmdbApiConsumer();
 
-		var x = apiConsumer.getAllEpisodesInfo("Gilmore Girls");
-		x.forEach(System.out::println);
+		View summerScreenView = new View();
+		summerScreenView.initSummerScreen();
 
 	}
 }
