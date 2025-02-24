@@ -13,8 +13,9 @@ import java.util.List;
  */
 public class OmdbApiConsumer extends ApiConsumer {
 
-    private final String apiKey = "311191c4";
-    private final DataConverter mapper = new DataConverter();
+    private final String URI = "https://www.omdbapi.com/?t=";
+    private final String API_KEY = "&apikey=311191c4";
+    private final DataConverter MAPPER = new DataConverter();
 
     /**
      * Fetches information about a TV series from the OMDb API.
@@ -25,10 +26,10 @@ public class OmdbApiConsumer extends ApiConsumer {
      */
     public SeriesInfo getSeriesInfo(String title){
         title = title.replace(" ", "+");
-        String endpoint = "https://www.omdbapi.com/?t=" + title +
-                "&apikey=" + apiKey;
+        String endpoint = URI + title +
+                API_KEY;
       var serieInfo = super.getData(endpoint);
-      return mapper.jsonToObject(serieInfo, SeriesInfo.class);
+      return MAPPER.jsonToObject(serieInfo, SeriesInfo.class);
     }
 
     /**
@@ -41,11 +42,11 @@ public class OmdbApiConsumer extends ApiConsumer {
      */
     public SeasonInfo getSeasonInfo(String title, Integer season){
         title = title.replace(" ", "+");
-        String endpoint = "https://www.omdbapi.com/?t=" + title +
+        String endpoint = URI + title +
                 "&season=" + season +
-                "&apikey=" + apiKey;
+                API_KEY;
         var seasonInfo = super.getData(endpoint);
-        return mapper.jsonToObject(seasonInfo, SeasonInfo.class);
+        return MAPPER.jsonToObject(seasonInfo, SeasonInfo.class);
     }
 
     /**
@@ -59,12 +60,12 @@ public class OmdbApiConsumer extends ApiConsumer {
      */
     public EpisodeInfo getEpisodeInfo(String title, Integer season, Integer episode){
         title = title.replace(" ", "+");
-        String endpoint = "https://www.omdbapi.com/?t=" + title +
+        String endpoint = URI + title +
                 "&season=" + season +
                 "&episode=" + episode +
-                "&apikey=" + apiKey;
+                API_KEY;
         var episodeInfo = super.getData(endpoint);
-        return mapper.jsonToObject(episodeInfo, EpisodeInfo.class);
+        return MAPPER.jsonToObject(episodeInfo, EpisodeInfo.class);
     }
 
     /**
